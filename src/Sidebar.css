@@ -38,6 +38,11 @@
   border-right: 1px solid lightgray;
 }
 
+.sidebar__header > h1 {
+  font-size: 25px;
+  /* font-family: 'Italianno'; */
+  margin-left: -10px;
+}
 .sidebar__headerRight {
   display: flex;
   align-items: center;

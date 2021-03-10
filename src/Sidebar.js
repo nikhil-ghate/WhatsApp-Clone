@@ -29,6 +29,8 @@ function Sidebar() {
     <div className='sidebar'>
       <div className='sidebar__header'>
         <Avatar src={user?.photoURL} />
+        {console.log('USER>>>>>>>>>>', user?.displayName)}
+        <h1>{user?.displayName}</h1>
         <div className='sidebar__headerRight'>
           <IconButton>
             <DonutLargeIcon />

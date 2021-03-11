@@ -24,13 +24,16 @@ function Sidebar() {
       )
     )
   }, [])
-  console.log('ROOMS::', rooms)
   return (
     <div className='sidebar'>
       <div className='sidebar__header'>
-        <Avatar src={user?.photoURL} />
-        {console.log('USER>>>>>>>>>>', user?.displayName)}
-        <h1>{user?.displayName}</h1>
+        <Avatar
+          src={
+            user?.photoURL ||
+            `https://avatars.dicebear.com/api/human/${user}.svg`
+          }
+        />
+        <h1>{user?.displayName || user}</h1>
         <div className='sidebar__headerRight'>
           <IconButton>
             <DonutLargeIcon />

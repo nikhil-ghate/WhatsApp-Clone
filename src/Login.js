@@ -18,6 +18,12 @@ function Login() {
       )
       .catch(err => console.log('Error>>>>', err))
   }
+  const demoSignIn = () => {
+    dispatch({
+      type: actionTypes.SET_DEMO_USER,
+      user: `demoUser ${Math.floor(Math.random() * 1000)}`
+    })
+  }
   return (
     <div className='login'>
       <div className='login__container'>
@@ -32,6 +38,10 @@ function Login() {
 
         <Button type='submit' onClick={signIn}>
           Sign In with Google
+        </Button>
+        <p>OR</p>
+        <Button type='submit' onClick={demoSignIn}>
+          Demo Sign In
         </Button>
       </div>
     </div>

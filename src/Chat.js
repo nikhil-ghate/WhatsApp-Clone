@@ -15,7 +15,7 @@ function Chat() {
   const { roomId } = useParams()
   const [roomName, setRoomName] = useState('')
   const [messages, setMessages] = useState([])
-  const [{ user }, dispatch] = useStateValue()
+  const [{ user }] = useStateValue()
 
   useEffect(() => {
     if (roomId) {
@@ -41,11 +41,14 @@ function Chat() {
 
   const sendMessage = e => {
     e.preventDefault()
-    db.collection('rooms').doc(roomId).collection('messages').add({
-      message: input,
-      name: user.displayName,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
+    db.collection('rooms')
+      .doc(roomId)
+      .collection('messages')
+      .add({
+        message: input,
+        name: user.displayName || user,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
 
     setInput('')
   }
@@ -76,10 +79,11 @@ function Chat() {
         </div>
       </div>
       <div className='chat__body'>
-        {messages.map(message => (
+        {messages.map((message, index) => (
           <p
+            key={index}
             className={`chat__message ${
-              message.name === user.displayName && 'chat__receiver'
+              message.name === (user.displayName || user) && 'chat__receiver'
             }`}
           >
             <span className='chat__name'>{message.name}</span>
